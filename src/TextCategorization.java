@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
-
+import java.util.Date;
 public class TextCategorization {
 
 	final static String outPath = "/home/neetesh/workspace/LearningBased/proc/outFiles";
@@ -23,8 +23,12 @@ public class TextCategorization {
 			}
 			done[choice - 1] = 1;
 			TextProcessor p = new TextProcessor();
+			long ini = new Date().getTime();
 			// System.out.println(folders.get(choice - 1).toString());
 			p.processFolder(folders.get(choice - 1).toString());
+			long now = new Date().getTime();
+			System.out.println("Time taken by this folder is: ");
+			System.out.println((now-ini)/1000 + " sec");
 			int count = 0;
 			for (int i = 0; i < done.length; i++) {
 				if (done[i] == 1)

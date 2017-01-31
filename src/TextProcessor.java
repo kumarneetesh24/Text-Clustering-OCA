@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TextProcessor {
 	
@@ -16,7 +17,11 @@ public class TextProcessor {
 			if (listOfFiles[i].isFile()) {
 				// System.out.println(listOfFiles[i].getName());
 				process.removeStopWords(path, listOfFiles[i].getName());
+				long ini = new Date().getTime();
 				cluster.create(path,listOfFiles[i].getName());
+				long now = new Date().getTime();
+				System.out.println("Time taken by file "+ listOfFiles[i].getName() +" is: ");
+				System.out.println((now-ini)/1000 + " sec");
 				File tmp_file = new File(path+"/tmp_"+listOfFiles[i].getName());
 				tmp_file.delete();
 			}
